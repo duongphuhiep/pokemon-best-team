@@ -27,7 +27,7 @@ var Effectiveness = [18][18]int{
 }
 
 type Node struct {
-	Parent            *Node
+	Parent             *Node
 	Type               int
 	FirstUncoveredType int //not important
 }
@@ -52,32 +52,30 @@ func (o Node) Cover(pokemonType int) bool {
 		}
 	}
 
-	return false;
+	return false
 }
 
 //set the FirstUncoveredType
-func (o* Node) computeFistUncoveredType() int {
-	for i:=0; i<len(PokemonTypes); i++ {
+func (o *Node) computeFistUncoveredType() int {
+	for i := 0; i < len(PokemonTypes); i++ {
 		if !o.Cover(i) {
 			o.FirstUncoveredType = i
 			return i
 		}
 	}
 	o.FirstUncoveredType = -1
-	return -1;
+	return -1
 }
 
 //export the node and all its ancestor to an array
 func (o *Node) Export() []string {
-	resu := make([]string, 1);
+	resu := make([]string, 1)
 	resu[0] = PokemonTypes[o.Type]
 
-	for ;o.Parent!=nil; {
+	for o.Parent != nil {
 		o = o.Parent
 		resu = append(resu, PokemonTypes[o.Type])
 	}
 
 	return resu
 }
-
-
