@@ -1,8 +1,9 @@
 package main
 
 import (
-	"./pokemon"
 	"fmt"
+
+	"github.com/duongphuhiep/pokemon-best-team/pokemon"
 )
 
 func main() {
